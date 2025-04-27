@@ -1,0 +1,19 @@
+package tut.scp.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import tut.scp.dto.StudyRoomBookingRequest;
+import tut.scp.entity.StudyRoomBooking;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+public interface StudyRoomBookingRepository extends JpaRepository<StudyRoomBooking, Long> {
+
+    @Query("SELECT srb.room.id FROM StudyRoomBooking srb " +
+            "WHERE srb.status = 'BOOKED' " +
+            "AND NOT (srb.endTime <= :startTime OR srb.startTime >= :endTime)")
+    List<Long> findBookedRoomIds(LocalDateTime startTime, LocalDateTime endTime);
+
+}
