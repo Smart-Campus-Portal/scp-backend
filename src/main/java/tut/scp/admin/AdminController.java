@@ -8,22 +8,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tut.scp.dto.UserRequest;
-import tut.scp.service.IUserService;
+import tut.scp.service.IUser;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
 
-    private final IUserService userService;
+    private final IUser userService;
 
     @Autowired
-    public AdminController(IUserService userService) {
+    public AdminController(IUser userService) {
         this.userService = userService;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-user")
     public ResponseEntity<?> createUser(@RequestBody UserRequest userRequest) {
-        return ResponseEntity.ok(userService.addUser(userRequest));
+        return userService.addUser(userRequest);
     }
+
 }

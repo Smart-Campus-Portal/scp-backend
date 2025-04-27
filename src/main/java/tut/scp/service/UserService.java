@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tut.scp.dto.UserRequest;
 import tut.scp.entity.User;
@@ -17,34 +16,13 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserService implements IUserService {
+public class UserService implements IUser {
 
     private final UserRepository userRepo;
-    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public ResponseEntity<?> setPassword(User user, String password) {
-        Map<String, String> response = new HashMap<>();
-        if(user.isEnabled()) {
-            response.put("message", "User already enabled");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(response);
-        }
-        log.info("Password update by user: {}", user.getEmail());
-        user.setPassword(passwordEncoder.encode(password));
-        user.setEnabled(true);
-        userRepo.save(user);
-
-        response.put("message", "Password updated successfully");
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(response);
     }
 
     @Override
@@ -56,7 +34,7 @@ public class UserService implements IUserService {
                     .body(response);
         }
         log.info("Creating new user: {}", userRequest.getEmail());
-        User newUser = new User();
+        tut.scp.entity.User newUser = new tut.scp.entity.User();
         newUser.setEmail(userRequest.getEmail());
         newUser.setFirstName(userRequest.getFirstName());
         newUser.setLastName(userRequest.getLastName());
@@ -74,4 +52,12 @@ public class UserService implements IUserService {
     public Optional<User> getUserByEmail(String email) throws UsernameNotFoundException {
         return userRepo.findByEmail(email);
     }
+
+    @Override
+    public void updateUserPassword(User user, String newPassword) {
+        user.setPassword(newPassword);
+        user.setEnabled(true);
+        userRepo.save(user);
+    }
+
 }

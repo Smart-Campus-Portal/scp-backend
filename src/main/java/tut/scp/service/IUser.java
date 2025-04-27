@@ -6,8 +6,8 @@ import tut.scp.entity.User;
 
 import java.util.Optional;
 
-public interface IUserService {
-    ResponseEntity<?> setPassword(User user, String password);
+public interface IUser {
     ResponseEntity<?> addUser(UserRequest userRequest);
     Optional<User> getUserByEmail(String email);
+    void updateUserPassword(User user, String newPassword);
 }
