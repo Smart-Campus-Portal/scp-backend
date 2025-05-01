@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/student")
+@CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
 
     private final IStudyRoom studyRoomService;
