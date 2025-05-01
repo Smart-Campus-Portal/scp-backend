@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tut.scp.dto.AuthRequest;
-import tut.scp.service.IAuth;
+import tut.scp.shared.service.IAuth;
 
 
 @RestController

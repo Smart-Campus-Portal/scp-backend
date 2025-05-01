@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tut.scp.dto.UserRequest;
-import tut.scp.service.IUser;
+import tut.scp.shared.service.IUser;
 
 @RestController
 @RequestMapping("/api/admin")
