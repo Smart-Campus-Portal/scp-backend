@@ -52,4 +52,9 @@ public class MaintenanceService implements IMaintenance {
         log.info("Retrieving reported issues by reporter {}", reporterId);
         return ResponseEntity.status(HttpStatus.OK).body(issueRepo.findByReporterId(reporterId));
     }
+
+    @Override
+    public ResponseEntity<?> getAllReportedIssues() {
+        return ResponseEntity.status(HttpStatus.OK).body(issueRepo.findAll());
+    }
 }

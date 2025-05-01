@@ -31,4 +31,10 @@ public class MaintenanceController {
         return maintenanceService.getReportedIssues(reporterId);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/issues/all")
+    public ResponseEntity<?> getAllReportedMaintenanceIssues() {
+        return maintenanceService.getAllReportedIssues();
+    }
+
 }
