@@ -6,29 +6,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tut.scp.dto.StudyRoomBookingRequest;
+import tut.scp.lecturer.Interface.TimetableInterface;
 
 import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/student")
-@CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
 
     private final IStudyRoom studyRoomService;
+    private final TimetableInterface timetable;
 
     @Autowired
-    public StudentController(IStudyRoom studyRoomBookingService) {
+    public StudentController(IStudyRoom studyRoomBookingService, TimetableInterface timetable) {
         this.studyRoomService = studyRoomBookingService;
+        this.timetable = timetable;
     }
 
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @GetMapping("/view-timetable")
-    public ResponseEntity<?> viewTimetable() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body("Timetable");
+    public ResponseEntity<?> viewTimetable(@RequestParam("course") String course) {
+        return timetable.getTimetable(course);
     }
-
+    
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @PostMapping("/available-study-rooms")
     public ResponseEntity<?> getAvailableStudyRooms(@RequestParam("startTime") String startTimeStr, @RequestParam("endTime") String endTimeStr) {

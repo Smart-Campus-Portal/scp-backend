@@ -1,5 +1,7 @@
 package tut.scp.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +29,15 @@ public class User {
     @Column(name = "is_enabled")
     private boolean isEnabled;
 
+      // One-to-Many Relationship
+      @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+      private List<LecturerSchedule> lecturerSchedules;
+      
+      @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+      private List<Timetable> timetables;
+  
+      @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+      private List<Appointment> appointments;
+
+      
 }

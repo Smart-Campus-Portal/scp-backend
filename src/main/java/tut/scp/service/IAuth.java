@@ -1,4 +1,4 @@
-package tut.scp.shared.service;
+package tut.scp.service;
 
 import org.springframework.http.ResponseEntity;
 import tut.scp.dto.AuthRequest;
