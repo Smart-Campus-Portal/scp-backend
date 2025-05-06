@@ -1,0 +1,167 @@
+/* Admin Dashboard Container */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9fafb;
+}
+
+/* Main area (sidebar + content) */
+.dashboard-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e3a8a;
+  padding: 16px 32px;
+  color: #ffffff;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Sidebar Styling */
+.dashboard-sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 10px;
+  position: relative;
+  height: 100vh;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+/* Navigation Styling */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-icon {
+  font-size: 18px;
+}
+
+.nav-item:hover {
+  background-color: #e0f2fe;
+  color: #1e3a8a;
+}
+
+.nav-item.active {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+/* Content Styling */
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f3f4f6;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #ffffff;
+  padding: 16px;
+  text-align: center;
+  color: #6b7280;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Sidebar for Medium and Larger Screens */
+@media (min-width: 768px) {
+  .dashboard-sidebar {
+      display: block;
+      position: relative;
+  }
+
+  .dashboard-main {
+      display: flex;
+  }
+
+  .dashboard-content {
+      margin-left: 0;
+  }
+}
+
+/* Responsive Sidebar for Small Screens */
+@media (max-width: 767px) {
+  .dashboard-sidebar {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 220px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+  }
+
+  .dashboard-sidebar.show {
+      left: 0;
+  }
+
+  .dashboard-main {
+      margin-left: 0;
+  }
+}
+
+/* Toggle Button (Only Small Screens) */
+.sidebar-toggle-btn {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .sidebar-toggle-btn {
+      display: block;
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 1100;
+      background-color: #1e3a8a;
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+}
+
+.view-accounts-btn {
+  background-color: #1e40af;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-accounts-btn:hover {
+  background-color: #1a3697;
+}
