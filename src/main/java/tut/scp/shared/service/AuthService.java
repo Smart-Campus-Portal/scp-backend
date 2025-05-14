@@ -101,6 +101,7 @@ public class AuthService implements IAuth{
                                             .id(user.getId())
                                             .firstName(user.getFirstName())
                                             .lastName(user.getLastName())
+                                            .email(user.getEmail())
                                             .role(user.getRole().toString())
                                             .build()
                             )

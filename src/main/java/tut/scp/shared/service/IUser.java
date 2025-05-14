@@ -11,4 +11,6 @@ public interface IUser {
     Optional<User> getUserByEmail(String email);
     void updateUserPassword(User user, String newPassword);
     ResponseEntity<?> updateUser(UserRequest userRequest);
+    ResponseEntity<?> getUserById(Long id);
+    ResponseEntity<?> searchUsers(String query, int page, int size);
 }

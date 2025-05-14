@@ -24,4 +24,19 @@ public class UserController {
     public ResponseEntity<?> updateUserProfile(@RequestBody UserRequest userRequest) {
         return userService.updateUser(userRequest);
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUserProfile(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/search")
+    public ResponseEntity<?> searchUsers(
+            @RequestParam String query,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return userService.searchUsers(query, page, size);
+    }
 }
