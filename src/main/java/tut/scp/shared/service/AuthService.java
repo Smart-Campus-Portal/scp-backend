@@ -90,7 +90,7 @@ public class AuthService implements IAuth{
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String token = jwtService.generateToken(userDetails);
 
-            /* get user info to return with token */
+            /* get user info to return with a token */
             Optional<User> optionalUser = userService.getUserByEmail(userDetails.getUsername());
 
             User user = optionalUser.get();

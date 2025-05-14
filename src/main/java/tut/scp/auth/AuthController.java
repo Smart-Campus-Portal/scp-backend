@@ -2,26 +2,17 @@ package tut.scp.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
 import tut.scp.dto.AuthRequest;
 import tut.scp.shared.service.IAuth;
-=======
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tut.scp.dto.AuthRequest;
-import tut.scp.service.IAuth;
->>>>>>> lecturer-local/lecturer
-
 
 @RestController
 @RequestMapping("/api/auth")
-<<<<<<< HEAD
 @CrossOrigin(origins = "http://localhost:3000")
-=======
->>>>>>> lecturer-local/lecturer
 public class AuthController {
 
     private final IAuth authService;

@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tut.scp.dto.IssueRequest;
 import tut.scp.dto.MaintenanceIssueUpdateRequest;
-import tut.scp.enums.IssueStatus;
 import tut.scp.shared.service.IMaintenance;
 
 @RestController

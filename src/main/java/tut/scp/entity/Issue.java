@@ -9,7 +9,6 @@ import lombok.Setter;
 import tut.scp.enums.IssueCategory;
 import tut.scp.enums.IssuePriority;
 import tut.scp.enums.IssueStatus;
-import tut.scp.enums.StudyRoomStatus;
 
 import java.time.LocalDateTime;
 

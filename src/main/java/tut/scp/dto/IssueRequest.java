@@ -1,8 +1,5 @@
 package tut.scp.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 import tut.scp.enums.IssueCategory;
