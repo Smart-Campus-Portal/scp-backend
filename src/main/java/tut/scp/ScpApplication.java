@@ -11,3 +11,7 @@ public class ScpApplication {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> lecturer-local/lecturer

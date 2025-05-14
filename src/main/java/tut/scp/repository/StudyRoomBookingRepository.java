@@ -14,6 +14,7 @@ public interface StudyRoomBookingRepository extends JpaRepository<StudyRoomBooki
     @Query("SELECT srb.room.id FROM StudyRoomBooking srb " +
             "WHERE srb.status = 'BOOKED' " +
             "AND NOT (srb.endTime <= :startTime OR srb.startTime >= :endTime)")
+<<<<<<< HEAD
 
     List<Long> findBookedRoomIds(LocalDateTime startTime, LocalDateTime endTime);
 
@@ -26,4 +27,8 @@ public interface StudyRoomBookingRepository extends JpaRepository<StudyRoomBooki
             "ORDER BY COUNT(srb) DESC")
     List<Object[]> findTopBookedStudyRooms();
 
+=======
+    List<Long> findBookedRoomIds(LocalDateTime startTime, LocalDateTime endTime);
+
+>>>>>>> lecturer-local/lecturer
 }
