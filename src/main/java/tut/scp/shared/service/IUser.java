@@ -10,4 +10,5 @@ public interface IUser {
     ResponseEntity<?> addUser(UserRequest userRequest);
     Optional<User> getUserByEmail(String email);
     void updateUserPassword(User user, String newPassword);
+    ResponseEntity<?> updateUser(UserRequest userRequest);
 }

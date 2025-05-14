@@ -60,4 +60,21 @@ public class UserService implements IUser {
         userRepo.save(user);
     }
 
+    @Override
+    public ResponseEntity<?> updateUser(UserRequest userRequest) {
+        User user = getUserByEmail(userRequest.getEmail()).get();
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setEmail(userRequest.getEmail());
+        userRepo.save(user);
+
+        log.info("User {} updated", user.getEmail());
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User successfully updated");
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
+
 }
