@@ -13,4 +13,5 @@ public interface IUser {
     ResponseEntity<?> updateUser(UserRequest userRequest);
     ResponseEntity<?> getUserById(Long id);
     ResponseEntity<?> searchUsers(String query, int page, int size);
+    ResponseEntity<?> deleteUserById(Long id);
 }

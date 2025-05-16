@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserRequest userRequest) {
         return userService.updateUser(userRequest);
     }
@@ -38,5 +38,11 @@ public class UserController {
             @RequestParam(defaultValue = "10") int size
     ) {
         return userService.searchUsers(query, page, size);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> searchUsers(@RequestParam Long userId) {
+        return userService.deleteUserById( userId);
     }
 }

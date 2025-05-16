@@ -131,4 +131,15 @@ public class UserService implements IUser {
                 );
     }
 
+    @Override
+    public ResponseEntity<?> deleteUserById(Long id) {
+        User user = userRepo.findById(id).get();
+        userRepo.delete(user);
+        log.info("User {} deleted", user.getEmail());
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User successfully deleted");
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
+
 }
