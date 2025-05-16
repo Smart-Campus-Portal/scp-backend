@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import tut.scp.entity.User;
+import tut.scp.enums.Role;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,5 +24,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "OR LOWER(u.lastName) LIKE LOWER(CONCAT('%', :query, '%')) " +
             "OR LOWER(u.email) LIKE LOWER(CONCAT('%', :query, '%'))")
     Page<User> searchUsers(@Param("query") String query, Pageable pageable);
+
+    List<User> findByRole(Role role);
 
 }

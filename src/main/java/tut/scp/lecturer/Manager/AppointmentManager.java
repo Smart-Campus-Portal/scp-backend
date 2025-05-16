@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import tut.scp.entity.Appointment;
 import tut.scp.lecturer.Interface.AppointmentInterface;
-import tut.scp.lecturer.Repository.AppointmentRepository;
+import tut.scp.repository.AppointmentRepository;
 
 import java.util.List;
 import java.util.Collections;

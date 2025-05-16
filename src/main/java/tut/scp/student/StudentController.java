@@ -1,8 +1,10 @@
 package tut.scp.student;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import tut.scp.dto.AppointmentRequest;
 import tut.scp.dto.StudyRoomBookingRequest;
 import tut.scp.lecturer.Interface.AppointmentInterface;
 import tut.scp.lecturer.Interface.TimetableInterface;
@@ -18,11 +20,19 @@ public class StudentController {
     private final IStudyRoom studyRoomService;
     private final TimetableInterface timetable;
     private final AppointmentInterface appointmentInterface;
+    private final IAppointment appointmentService;
 
-    public StudentController(IStudyRoom studyRoomBookingService, TimetableInterface timetable, AppointmentInterface appointmentInterface) {
+    @Autowired
+    public StudentController(
+            IStudyRoom studyRoomBookingService,
+            TimetableInterface timetable,
+            AppointmentInterface appointmentInterface,
+            IAppointment appointmentService) {
+
         this.studyRoomService = studyRoomBookingService;
         this.timetable = timetable;
         this.appointmentInterface = appointmentInterface;
+        this.appointmentService = appointmentService;
     }
 
     @GetMapping("/view-timetable")
@@ -41,9 +51,14 @@ public class StudentController {
     }
 
      // Endpoint to create an appointment
-     @PostMapping("/makeAppointment")
-     public ResponseEntity<?> makeAppointment(@RequestBody tut.scp.entity.Appointment appointment) {
-         return appointmentInterface.makeAppointment(appointment);
+     @PostMapping("/book-appointment")
+     public ResponseEntity<?> makeAppointment(@RequestBody AppointmentRequest request) {
+         return appointmentService.bookAppointment(request);
+     }
+
+     @GetMapping("/get-all-lecturers")
+    public ResponseEntity<?> getAllLecturers() {
+         return appointmentService.getLecturers();
      }
 
 }
