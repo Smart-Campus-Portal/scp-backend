@@ -17,4 +17,5 @@ public class AppointmentRequest {
     private String description;
     private String courseName;
     private String moduleName;
+
 }
