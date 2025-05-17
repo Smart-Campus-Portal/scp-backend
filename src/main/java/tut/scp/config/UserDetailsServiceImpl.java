@@ -6,8 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import tut.scp.dto.UserResponse;
-import tut.scp.entity.User;
 import tut.scp.repository.UserRepository;
 
 import java.util.List;
@@ -32,7 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         List.of(new SimpleGrantedAuthority(user.getRole().name()))
                 ))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
-
     }
 
 }

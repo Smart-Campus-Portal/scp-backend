@@ -1,4 +1,4 @@
-package tut.scp.service;
+package tut.scp.shared.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +90,7 @@ public class AuthService implements IAuth{
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String token = jwtService.generateToken(userDetails);
 
-            /* get user info to return with token */
+            /* get user info to return with a token */
             Optional<User> optionalUser = userService.getUserByEmail(userDetails.getUsername());
 
             User user = optionalUser.get();
@@ -101,6 +101,7 @@ public class AuthService implements IAuth{
                                             .id(user.getId())
                                             .firstName(user.getFirstName())
                                             .lastName(user.getLastName())
+                                            .email(user.getEmail())
                                             .role(user.getRole().toString())
                                             .build()
                             )

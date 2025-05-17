@@ -1,4 +1,4 @@
-package tut.scp.service;
+package tut.scp.shared.service;
 
 import org.springframework.http.ResponseEntity;
 import tut.scp.dto.UserRequest;
@@ -10,4 +10,8 @@ public interface IUser {
     ResponseEntity<?> addUser(UserRequest userRequest);
     Optional<User> getUserByEmail(String email);
     void updateUserPassword(User user, String newPassword);
+    ResponseEntity<?> updateUser(UserRequest userRequest);
+    ResponseEntity<?> getUserById(Long id);
+    ResponseEntity<?> searchUsers(String query, int page, int size);
+    ResponseEntity<?> deleteUserById(Long id);
 }

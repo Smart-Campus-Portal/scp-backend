@@ -8,5 +8,4 @@ import java.time.LocalDateTime;
 public interface IStudyRoom {
     ResponseEntity<?> getAvailableStudyRooms(LocalDateTime startTime, LocalDateTime endTime);
     ResponseEntity<?> bookStudyRoom(StudyRoomBookingRequest request);
-    
 }
