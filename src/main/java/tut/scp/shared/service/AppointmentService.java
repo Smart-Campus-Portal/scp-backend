@@ -1,4 +1,4 @@
-package tut.scp.student;
+package tut.scp.shared.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +70,29 @@ public class AppointmentService implements IAppointment {
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(foundLecturers);
+    }
+
+    @Override
+    public ResponseEntity<?> viewAppointments(Long userId) {
+        User user = userRepo.findById(userId).orElse(null);
+        log.info("Retrieving appointments for user {}", user.getEmail());
+
+        List<Appointment> appointments;
+
+        if (user.getRole() == Role.ROLE_STUDENT) {
+            appointments = appointmentRepo.findAllByStudentId(userId);
+        } else {
+            appointments = appointmentRepo.findAllByLecturerId(userId);
+        }
+
+        if (appointments.isEmpty()) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "No appointments found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(response);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(appointments);
     }
 }

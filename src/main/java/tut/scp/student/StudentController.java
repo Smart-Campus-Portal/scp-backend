@@ -8,6 +8,7 @@ import tut.scp.dto.AppointmentRequest;
 import tut.scp.dto.StudyRoomBookingRequest;
 import tut.scp.lecturer.Interface.AppointmentInterface;
 import tut.scp.lecturer.Interface.TimetableInterface;
+import tut.scp.shared.service.IAppointment;
 
 import java.time.LocalDateTime;
 
@@ -49,16 +50,5 @@ public class StudentController {
     public ResponseEntity<?> bookStudyRoom(@RequestBody StudyRoomBookingRequest request) {
         return studyRoomService.bookStudyRoom(request);
     }
-
-     // Endpoint to create an appointment
-     @PostMapping("/book-appointment")
-     public ResponseEntity<?> makeAppointment(@RequestBody AppointmentRequest request) {
-         return appointmentService.bookAppointment(request);
-     }
-
-     @GetMapping("/get-all-lecturers")
-    public ResponseEntity<?> getAllLecturers() {
-         return appointmentService.getLecturers();
-     }
 
 }

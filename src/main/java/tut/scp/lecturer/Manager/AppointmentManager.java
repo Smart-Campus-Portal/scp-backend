@@ -21,7 +21,7 @@ public class AppointmentManager implements AppointmentInterface {
     @Override
     public ResponseEntity<List<Appointment>> getAppointments(Long lecturerID) {
         try {
-            List<Appointment> appointments = appointmentRepository.findByLecturer_Id(lecturerID);
+            List<Appointment> appointments = appointmentRepository.findAllByLecturerId(lecturerID);
             if (appointments.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(Collections.emptyList());

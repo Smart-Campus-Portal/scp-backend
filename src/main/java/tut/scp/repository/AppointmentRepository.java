@@ -5,7 +5,8 @@ import tut.scp.entity.Appointment;
 import java.util.List;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
-    List<Appointment> findByLecturer_Id(Long lecturerID);
+    List<Appointment> findAllByLecturerId(Long lecturerId);
+    List<Appointment> findAllByStudentId(Long studentId);
 }
 
 
